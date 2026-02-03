@@ -8,6 +8,8 @@ Stored WiFi password check (DOS/CMD)
 
 C:\Users\faizan\Desktop>netsh wlan show profile "Wi-Fries" key=clear
 
-
-
-
+Firewall ON / OFF  (DOS/CMD)
+C:\Windows\system32>netsh advfirewall set allprofiles state off
+Ok.
+C:\Windows\system32>netsh advfirewall set allprofiles state on
+Ok.
