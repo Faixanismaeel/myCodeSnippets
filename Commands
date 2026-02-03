@@ -1,4 +1,8 @@
-File hide in NTFS (DOS)
+File hide in NTFS (DOS/CMD)
 
-```type mysecret.txt > public.txt:hidden.txt```
-'''notepad public.txt:hidden.txt'''
+```cmd
+type mysecret.txt > public.txt:hidden.txt
+notepad public.txt:hidden.txt```
+
+
+
