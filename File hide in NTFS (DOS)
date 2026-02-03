@@ -1,0 +1,94 @@
+Since you've already experimented with the `type` and `echo` commands, you have the basics down. To "hide" a file inside another text file on an NTFS drive, you use **Alternate Data Streams (ADS)**.
+
+Here are the specific commands to hide, view, and run files using this method.
+
+---
+
+## 1. Hiding the File
+
+To hide the contents of a "Secret" file inside a "Public" file, use the `type` command with the colon (`:`) syntax.
+
+**The Command:**
+
+```cmd
+type mysecret.txt > public.txt:hidden.txt
+
+```
+
+* **`public.txt`**: This is the file everyone sees.
+* **`:hidden.txt`**: This is the name of the "secret" stream attached to it.
+
+---
+
+## 2. Viewing the Hidden Data
+
+You cannot see the hidden data by simply opening `public.txt`. You must call the stream specifically using an application that understands the path.
+
+**Using Notepad:**
+
+```cmd
+notepad public.txt:hidden.txt
+
+```
+
+**Using PowerShell (The modern way):**
+
+```powershell
+Get-Content -Path "public.txt" -Stream "hidden.txt"
+
+```
+
+---
+
+## 3. Hiding an Executable (.exe)
+
+You can even hide an entire program inside a text file. This is a common technique used in cybersecurity (and by malware) to bypass basic file scanners.
+
+**To hide a program:**
+
+```cmd
+type calc.exe > readme.txt:mms.exe
+
+```
+
+**To run it (Windows 10/11):**
+Old methods of running hidden EXEs are now blocked for security. To run a hidden executable today, you usually have to use a "LOLBin" (Living Off the Land Binary) like `wmic`:
+
+```cmd
+wmic process call create "C:\path\to\readme.txt:mms.exe"
+
+```
+
+---
+
+## 4. How to Find Hidden Files
+
+If you suspect someone is hiding data on your system, use the `/R` flag with the directory command. It reveals all "invisible" streams.
+
+**The Command:**
+
+```cmd
+dir /R
+
+```
+
+**What to look for:**
+If a file has a stream, you will see a second line below the filename like this:
+`15 public.txt`
+`2,405 public.txt:hidden.txt:$DATA`
+
+---
+
+### Important Summary Table
+
+| Goal | Command |
+| --- | --- |
+| **Hide Text** | `echo "secret" > file.txt:hide` |
+| **Hide File** | `type secret.zip > file.txt:secret.zip` |
+| **View Stream** | `notepad file.txt:hide` |
+| **List Streams** | `dir /R` |
+| **Delete Stream** | `powershell Remove-Item file.txt -Stream hide` |
+
+**Wait!** Remember that if you copy `public.txt` to a cloud drive (like Google Drive) or a USB stick that isn't formatted as NTFS, **the hidden data will be lost forever**. These streams only exist on NTFS hard drives.
+
+Would you like to know how to use a script to automatically scan an entire folder for these hidden streams?
