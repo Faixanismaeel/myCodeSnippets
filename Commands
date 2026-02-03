@@ -1,0 +1,4 @@
+File hide in NTFS (DOS)
+
+'''type mysecret.txt > public.txt:hidden.txt'''
+'''notepad public.txt:hidden.txt'''
