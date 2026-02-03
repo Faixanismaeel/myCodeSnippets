@@ -1,10 +1,9 @@
 File hide in NTFS (DOS/CMD)
 
-```cmd
+```
 type mysecret.txt > public.txt:hidden.txt
 notepad public.txt:hidden.txt
 ```
-
 Stored WiFi password check (DOS/CMD)
 
 C:\Users\faizan\Desktop>netsh wlan show profile "Wi-Fries" key=clear
