@@ -14,4 +14,6 @@ Ok.
 C:\Windows\system32>netsh advfirewall set allprofiles state on
 Ok.
 
+ipconfig /all not needed anymore. Just use below command. (CMD/DOS)
+netsh wlan show wlanreport
 
